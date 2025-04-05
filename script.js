@@ -2,62 +2,53 @@
 // Переменные
 let currentColor = '#000000'; // Текущий цвет QR-кода
 
-// Основная функция генерации
-function generateQR() {
+// Основная функция генерации (добавлен async)
+async function generateQR() {
     const textInput = document.getElementById('qr-text');
-    const text = textInput.value.trim(); // Получаем и очищаем текст
+    const text = textInput.value.trim();
     const qrOutput = document.getElementById('qr-output');
 
-    // Проверка на пустой ввод
     if (!text) {
         alert('Введите текст или ссылку!');
         return;
     }
 
-    // Очищаем предыдущий QR-код
     qrOutput.innerHTML = '';
     
-    // Создаем новый canvas
     const canvas = document.createElement('canvas');
     qrOutput.appendChild(canvas);
 
-    // Генерация QR-кода
     try {
-        QRCode.toCanvas(
-            canvas, // Передаем элемент canvas
+        // Используем современный синтаксис с await вместо коллбэка
+        await QRCode.toCanvas(
+            canvas,
             text,
             {
                 width: 200,
                 color: {
-                    dark: currentColor,   // Цвет точек
-                    light: '#ffffff00'   // Прозрачный фон
+                    dark: currentColor,
+                    light: '#ffffff00'
                 },
                 margin: 2,
-                errorCorrectionLevel: 'H' // Высокая устойчивость к ошибкам
-            },
-            (error) => {
-                if (error) {
-                    console.error('Ошибка генерации:', error);
-                    alert('Не удалось создать QR-код 😢');
-                } else {
-                    // Добавляем пиксельный эффект
-                    canvas.style.imageRendering = 'pixelated';
-                }
+                errorCorrectionLevel: 'H'
             }
         );
+        // Пиксельный эффект применяется после успешной генерации
+        canvas.style.imageRendering = 'pixelated';
     } catch (error) {
-        alert('Критическая ошибка: ' + error.message);
+        console.error('Ошибка генерации:', error);
+        alert('Не удалось создать QR-код 😢');
     }
 }
 
-// Смена цвета QR-кода
+// Смена цвета QR-кода (без изменений)
 function changeColor(newColor) {
     currentColor = newColor;
     const text = document.getElementById('qr-text').value.trim();
-    if (text) generateQR(); // Пересоздаем QR, если текст есть
+    if (text) generateQR();
 }
 
-// Скачивание QR-кода
+// Скачивание QR-кода (без изменений)
 function downloadQR() {
     const canvas = document.querySelector('#qr-output canvas');
     if (!canvas) {
@@ -65,14 +56,13 @@ function downloadQR() {
         return;
     }
     
-    // Создаем временную ссылку для скачивания
     const link = document.createElement('a');
-    link.download = 'game-qr.png'; // Название файла
-    link.href = canvas.toDataURL(); // Данные изображения
+    link.download = 'game-qr.png';
+    link.href = canvas.toDataURL();
     link.click();
 }
 
-// Дополнительно: генерация по нажатию Enter
+// Обработчик Enter (без изменений)
 document.getElementById('qr-text').addEventListener('keypress', (e) => {
     if (e.key === 'Enter') generateQR();
 });
