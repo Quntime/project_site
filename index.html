@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel QR Generator</title>
+    <!-- Подключаем стили -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Ретро-шрифт -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <!-- Библиотека QR-кодов -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+</head>
+<body>
+    <div class="game-qr-container">
+        <h1>Pixel QR Generator</h1>
+        
+        <div class="input-group">
+            <input type="text" id="qr-text" placeholder="Введите ссылку или текст...">
+            <button onclick="generateQR()">🕹️ Создать QR</button>
+        </div>
+
+        <!-- Блок для QR-кода -->
+        <div id="qr-output" class="pixel-art"></div>
+
+        <!-- Кнопки выбора цвета -->
+        <div class="options">
+            <button onclick="changeColor('#ff0000')">🔴 Красный</button>
+            <button onclick="changeColor('#00ff00')">🟢 Зелёный</button>
+            <button onclick="changeColor('#0000ff')">🔵 Синий</button>
+            <button onclick="downloadQR()">💾 Скачать</button>
+        </div>
+    </div>
+
+    <!-- Подключаем скрипты -->
+    <script src="script.js"></script>
+</body>
+</html>

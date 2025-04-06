@@ -1,0 +1,52 @@
+/* Основные стили */
+body {
+    background: #1a1a1a;
+    margin: 0;
+    padding: 20px;
+}
+
+.game-qr-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #2d2d2d;
+    border: 5px solid #8b8b8b;
+    font-family: 'Press Start 2P', cursive;
+    color: #fff;
+    text-align: center;
+}
+
+.input-group input {
+    padding: 10px;
+    margin: 10px;
+    width: 70%;
+    border: 3px solid #4a4a4a;
+    background: #1a1a1a;
+    color: #0f0;
+    font-family: inherit;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    background: #4CAF50;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+    transition: all 0.3s;
+}
+
+button:hover {
+    background: #45a049;
+    transform: scale(1.1);
+}
+
+.pixel-art {
+    margin: 20px auto;
+    border: 5px solid #666;
+    image-rendering: pixelated;
+}
+
+.options button {
+    background: #555;
+}
